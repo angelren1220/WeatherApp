@@ -12,6 +12,10 @@ export class WeatherService {
 
   constructor(private http: HttpClient){}
 
+  getCurrentLocationWeather(lat: number, lon: number) {
+    return this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${lat},${lon}`);
+  }  
+
   getWeather(city: String) {
     return this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${city}`)
   }
