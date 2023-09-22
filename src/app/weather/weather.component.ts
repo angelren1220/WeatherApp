@@ -8,11 +8,12 @@ import { WeatherService } from '../weather.service';
 })
 export class WeatherComponent implements OnInit {
   weatherData: any;
+  forecastData: any;
   city: string = '';
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   getCurrentWeather() {
     if (navigator.geolocation) {
@@ -27,11 +28,17 @@ export class WeatherComponent implements OnInit {
       alert("Geolocation is not supported by this browser.");
     }
   }
-  
 
   getWeather() {
     this.weatherService.getWeather(this.city).subscribe((data) => {
       this.weatherData = data;
     })
   }
+
+  getForecast() {
+    this.weatherService.getForecast(this.city).subscribe((data) => {
+      this.forecastData = data;
+    });
+  }
+
 }

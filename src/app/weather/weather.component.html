@@ -9,3 +9,13 @@
   <p>Temperature: {{ weatherData.current.temp_c }} °C</p>
   <p>Weather: {{ weatherData.current.condition.text }}</p>
 </div>
+<div>
+  <button (click)="getForecast()">Get Forecast</button>
+</div>
+<div *ngIf="forecastData">
+  <div *ngFor="let day of forecastData.forecast.forecastday">
+    <p>Date: {{ day.date }}</p>
+    <p>Temperature: {{ day.day.avgtemp_c }} °C</p>
+    <p>Condition: {{ day.day.condition.text }}</p>
+  </div>
+</div>
