@@ -3,13 +3,19 @@
   <button (click)="getWeatherAndForecast()">Get Weather</button>
 </div>
 <div *ngIf="weatherData">
-  <p>Temperature: {{ weatherData.current.temp_c }} °C</p>
-  <p>Weather: {{ weatherData.current.condition.text }}</p>
+  <p>
+    Now {{ weatherData.current.temp_c }} °C
+    <i [ngClass]="getWeatherIcon(weatherData.current.condition.text)"></i>
+    {{ weatherData.current.condition.text }}
+  </p>
 </div>
 <div *ngIf="forecastData">
   <div *ngFor="let day of forecastData.forecast.forecastday">
     <p>Date: {{ day.date }}</p>
-    <p>Temperature: {{ day.day.avgtemp_c }} °C</p>
-    <p>Condition: {{ day.day.condition.text }}</p>
+    <p>
+      {{ day.day.avgtemp_c }} °C
+      <i [ngClass]="getWeatherIcon(day.day.condition.text)"></i>
+      {{ day.day.condition.text }}
+    </p>
   </div>
 </div>

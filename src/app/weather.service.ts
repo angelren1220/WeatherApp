@@ -19,13 +19,6 @@ export class WeatherService {
     return this.http.get(`${this.cityUrl}&lat=${lat}&lon=${lon}`);
   } 
 
-  // getWeather(city: String) {
-  //   return this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${city}`)
-  // }
-
-  // getForecast(city: String) {
-  //   return this.http.get(`${this.forecastUrl}?key=${this.apiKey}&q=${city}&days=3`);
-  // }
 
   getWeatherAndForecast(city: String) {
     const weatherObservable = this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${city}`);
