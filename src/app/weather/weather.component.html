@@ -4,25 +4,38 @@
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 </div>
-<div *ngIf="weatherData">
-  <p>
-    Now {{ weatherData.current.temp_c }} °C
-    <i [ngClass]="getWeatherIcon(weatherData.current.condition.text)"></i>
-    {{ weatherData.current.condition.text }}
-  </p>
-</div>
-<div *ngIf="forecastData">
-  <div *ngFor="let day of forecastData.forecast.forecastday">
-    <p>{{ day.date | date:'MM-dd' }} {{ day.date | date:'EEE' }}</p>
-    <p>
-      {{ day.day.avgtemp_c }} °C
-      <i [ngClass]="getWeatherIcon(day.day.condition.text)"></i>
-      {{ day.day.condition.text }}
-    </p>
-  </div>
-</div>
-<app-search-history
-  [searchHistory]="searchHistory"
-  (citySelected)="loadCityWeather($event)">
-</app-search-history>
 
+<table class="weather-table">
+  <tbody>
+    <!-- Current Weather Data -->
+    <ng-container *ngIf="weatherData">
+      <tr>
+        <td>Now</td>
+        <td>
+          {{ weatherData.current.temp_c }} °C
+        </td>
+        <td>
+          <i [ngClass]="getWeatherIcon(weatherData.current.condition.text)"></i>
+        </td>
+        <td>{{ weatherData.current.condition.text }}</td>
+      </tr>
+    </ng-container>
+
+    <!-- Forecast Data -->
+    <ng-container *ngIf="forecastData">
+      <tr *ngFor="let day of forecastData.forecast.forecastday">
+        <td>{{ day.date | date:'MM-dd' }} {{ day.date | date:'EEE' }}</td>
+        <td>
+          {{ day.day.avgtemp_c }} °C
+        </td>
+        <td>
+          <i [ngClass]="getWeatherIcon(day.day.condition.text)"></i>
+        </td>
+        <td>{{ day.day.condition.text }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<app-search-history [searchHistory]="searchHistory" (citySelected)="loadCityWeather($event)">
+</app-search-history>
