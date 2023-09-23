@@ -11,7 +11,7 @@
 </div>
 <div *ngIf="forecastData">
   <div *ngFor="let day of forecastData.forecast.forecastday">
-    <p>Date: {{ day.date }}</p>
+    <p>{{ day.date | date:'MM-dd' }} {{ day.date | date:'EEE' }}</p>
     <p>
       {{ day.day.avgtemp_c }} °C
       <i [ngClass]="getWeatherIcon(day.day.condition.text)"></i>
