@@ -1,0 +1,22 @@
+$primary-color: #333; 
+$font-stack: 'Arial', sans-serif;
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary-color;
+  padding: 10px 20px;
+
+  .title {
+    font-family: $font-stack;
+    margin: 0;
+    color: white; 
+  }
+
+  .logo {
+    width: 80px;  
+    height: 80px; 
+  }
+  
+}
