@@ -7,14 +7,14 @@ import { WeatherComponent } from './weather/weather.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { SearchHistoryComponent } from './search-history/search-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
     TopBarComponent,
-    PaginationComponent
+    SearchHistoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,12 @@
+<!-- Search History List -->
+<div *ngFor="let city of paginatedHistory()">
+  <button (click)="loadCityWeather(city)">{{ city }}</button>
+</div>
+
+<!-- Pagination Controls -->
+<!-- This is a very basic pagination example, you can expand on this -->
+<div class="pagination-controls">
+  <button (click)="goToPreviousPage()" [disabled]="currentPage == 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="goToNextPage()" [disabled]="currentPage == totalPages">Next</button>
+</div>

@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  currentPage: number = 1;
-  totalPages!: number;
+  loadCityWeather($event: string) {
+    throw new Error('Method not implemented.');
+  }
   goToPage($event: number) {
     throw new Error('Method not implemented.');
   }
