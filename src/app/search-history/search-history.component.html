@@ -1,12 +1,54 @@
 <!-- Search History List -->
-<div *ngFor="let city of paginatedHistory()">
-  <button (click)="loadCityWeather(city)">{{ city }}</button>
+<!-- Current Weather Data -->
+<div *ngIf="weatherData">
+  <table class="weather-table">
+    <th>{{city}}</th>
+    <tbody>
+      <tr>
+        <td>Now</td>
+        <td>
+          {{ weatherData.current.temp_c }} °C
+        </td>
+        <!-- <td>
+          <i [ngClass]="getWeatherIcon(weatherData.current.condition.text)"></i>
+        </td> -->
+        <td>{{ weatherData.current.condition.text }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Forecast Data -->
+<div *ngIf="forecastData">
+  <table class="weather-table">
+    <tbody>
+      <tr *ngFor="let day of forecastData.forecast.forecastday">
+        <td>{{ day.date | date:'MM-dd' }} {{ day.date | date:'EEE' }}</td>
+        <td>
+          {{ day.day.avgtemp_c }} °C
+        </td>
+        <!-- <td>
+          <i [ngClass]="getWeatherIcon(day.day.condition.text)"></i>
+        </td> -->
+        <td>{{ day.day.condition.text }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- Pagination Controls -->
-<!-- This is a very basic pagination example, you can expand on this -->
+<button (click)="goToPreviousPage()">Previous</button>
+<button (click)="goToNextPage()">Next</button>
+
+
+
+<!-- Pagination Controls -->
+<!-- Pagination Controls -->
 <div class="pagination-controls">
-  <button (click)="goToPreviousPage()" [disabled]="currentPage == 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button (click)="goToNextPage()" [disabled]="currentPage == totalPages">Next</button>
+  <button (click)="currentPage = 1; loadDataFromPage(0)" [disabled]="currentPage === 1">First</button>
+  <button (click)="currentPage = currentPage - 1; loadDataFromPage(currentPage - 2)" [disabled]="currentPage === 1">Prev</button>
+  <span>{{ currentPage }}</span>
+  <button (click)="currentPage = currentPage + 1; loadDataFromPage(currentPage)" [disabled]="currentPage === totalPages">Next</button>
+  <button (click)="currentPage = totalPages; loadDataFromPage(totalPages - 1)" [disabled]="currentPage === totalPages">Last</button>
 </div>
+

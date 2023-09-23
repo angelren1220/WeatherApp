@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
-import { tap, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -12,17 +11,17 @@ export class WeatherComponent implements OnInit {
   weatherData: any;
   forecastData: any;
   city: string = '';
-  searchHistory: string[] = [];
-
+  searchHistory: { city: string, weatherData: any, forecastData: any }[] = [];
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
+
     this.getCurrentCity();
     const savedHistory = localStorage.getItem('searchHistory');
     if (savedHistory) {
       this.searchHistory = JSON.parse(savedHistory);
-    }
+    }    
   }
 
   getCurrentCity() {
@@ -49,14 +48,16 @@ export class WeatherComponent implements OnInit {
       this.forecastData = data.forecast;
 
       // search history
-      if (!this.searchHistory.includes(this.city)) {
-        this.searchHistory.push(this.city);
-        localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
-      }
-      
+      const newResult = {
+        city: this.city,
+        weatherData: data.weather,
+        forecastData: data.forecast
+      };
+      this.searchHistory.push(newResult);
+      localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
     });
-
   }
+  
 
   getWeatherIcon(condition: string): string {
     if (condition.toLowerCase().includes('sunny')) {

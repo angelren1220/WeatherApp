@@ -3,49 +3,57 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-search-history',
   templateUrl: './search-history.component.html',
-  styleUrls: ['./search-history.component.sass']
+  styleUrls: ['./search-history.component.scss']
 })
 export class SearchHistoryComponent {
 
-  @Input() searchHistory: string[] = [];
+  @Input() searchHistory: { city: string, weatherData: any, forecastData: any }[] = [];
   @Output() citySelected = new EventEmitter<string>();
 
   // Pagination properties
   currentPage: number = 1;
-  itemsPerPage: number = 10;  // or whatever makes sense for your UI
+  itemsPerPage: number = 5;  // or whatever makes sense for your UI
   totalPages: number;
+  city: string = '';
+  weatherData: any;
+  forecastData: any;
 
   constructor() {
     // Calculate total pages based on itemsPerPage
     this.totalPages = Math.ceil(this.searchHistory.length / this.itemsPerPage);
   }
 
-  loadCityWeather(city: string) {
-    this.citySelected.emit(city);
+  ngOnInit() {
+    // Load data for the first page
+    this.loadDataFromPage(0);
   }
 
+
   // Add methods to handle pagination
-  // ...
 
   goToNextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
+      this.loadDataFromPage(this.currentPage - 1); // Arrays are 0-indexed
     }
   }
 
   goToPreviousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      this.loadDataFromPage(this.currentPage - 1);
     }
   }
 
-  // This function returns the items to be displayed on the current page
-  paginatedHistory(): string[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.searchHistory.slice(startIndex, startIndex + this.itemsPerPage);
-  }
 
-  // ...
+  loadDataFromPage(pageIndex: number) {
+    const selectedData = this.searchHistory[pageIndex];
+    if (selectedData) {
+      this.city = selectedData.city;
+      this.weatherData = selectedData.weatherData;
+      this.forecastData = selectedData.forecastData;
+    }
+  }
 
 }
 
