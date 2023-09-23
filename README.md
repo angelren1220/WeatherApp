@@ -1,22 +1,22 @@
 ## Angular Weather App
 
-This is a weather application built with Angular that allows users to view the current weather and forecast for their location or a specified city.
+This Angular-powered weather application provides users with an intuitive interface to view both current weather conditions and a 3-day forecast. It has the capability to automatically detect the user's current location and can also allow manual city entry for weather lookups.
 
 ## Features
 
-- View current weather details for any city
-- View a 3-day forecast for any city
-- Automatically detect and display weather for the user's current location
+- Automatic Location Detection: As soon as you open the app, it identifies and displays weather data for your current location.
+- Custom City Entry: Want to know the weather somewhere else? Just type in the city's name and get immediate details.
+- 3-Day Forecast: Alongside current conditions, view a concise 3-day forecast for any city.
 
 ### Current Weather Display
-![Current Weather Display]()
+![Current Weather Display](https://github.com/angelren1220/WeatherApp/blob/1037bf1f57d91abbf8a92e85836e64755dc70381/screenshots/Screenshot1.png?raw=true)
 
 ## Technologies Used
 
-- Angular
-- RxJS
-- OpenStreetMap API (for geolocation-based city detection)
-- WeatherAPI.com (for fetching current weather and forecast)
+- Angular: Used as the main framework for building the application.
+- RxJS: Employed for handling asynchronous data streams.
+- OpenStreetMap API: This API aids in geolocation-based city identification.
+- WeatherAPI.com: Our primary source for current weather and forecast data.
 
 ## Setup and Installation
 
