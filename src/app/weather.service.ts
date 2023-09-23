@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environments';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,21 @@ export class WeatherService {
     return this.http.get(`${this.cityUrl}&lat=${lat}&lon=${lon}`);
   } 
 
-  getWeather(city: String) {
-    return this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${city}`)
-  }
+  // getWeather(city: String) {
+  //   return this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${city}`)
+  // }
 
-  getForecast(city: String) {
-    return this.http.get(`${this.forecastUrl}?key=${this.apiKey}&q=${city}&days=3`);
+  // getForecast(city: String) {
+  //   return this.http.get(`${this.forecastUrl}?key=${this.apiKey}&q=${city}&days=3`);
+  // }
+
+  getWeatherAndForecast(city: String) {
+    const weatherObservable = this.http.get(`${this.apiUrl}?key=${this.apiKey}&q=${city}`);
+    const forecastObservable = this.http.get(`${this.forecastUrl}?key=${this.apiKey}&q=${city}&days=3`);
+
+    return forkJoin({
+      weather: weatherObservable,
+      forecast: forecastObservable
+    });
   }
 }
