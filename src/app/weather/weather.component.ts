@@ -15,13 +15,13 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  getCurrentWeather() {
+  getCurrentCity() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        this.weatherService.getCurrentLocationWeather(latitude, longitude).subscribe((data) => {
-          this.weatherData = data;
+        this.weatherService.getCityFromCoordinates(latitude, longitude).subscribe((data) => {
+          this.city = data.address.city;
         });
       });
     } else {
