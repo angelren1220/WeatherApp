@@ -34,32 +34,23 @@ button {
   }
 }
 
-// Weather display
-div {
-  & *ngIf {
-    margin-top: 1rem;
-    p {
-      margin: 0.5rem 0;
-    }
-  }
-}
+.weather-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; // Space between input search and table
 
-.search-history {
-  border-left: 1px solid #e0e0e0;
-  padding-left: 20px;
-  h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-    li {
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
+  td {
+    padding: 8px 12px;
+    text-align: center;
+
+    i {
+      margin-right: 5px; // space between icon and the text
     }
   }
+
+  tr:first-child {
+    background-color: $button-bg-color; // slightly different color for the current weather
+  }
+
 }
 
