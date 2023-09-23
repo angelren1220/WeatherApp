@@ -21,3 +21,10 @@
     </p>
   </div>
 </div>
+<div class="search-history">
+  <h3>Search History</h3>
+  <ul>
+    <li *ngFor="let city of searchHistory" (click)="loadCityWeather(city)">{{ city }}</li>
+  </ul>
+</div>
+

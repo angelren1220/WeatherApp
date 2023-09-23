@@ -43,3 +43,23 @@ div {
     }
   }
 }
+
+.search-history {
+  border-left: 1px solid #e0e0e0;
+  padding-left: 20px;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+

@@ -12,6 +12,8 @@ export class WeatherComponent implements OnInit {
   weatherData: any;
   forecastData: any;
   city: string = '';
+  searchHistory: string[] = [];
+
 
   constructor(private weatherService: WeatherService) { }
 
@@ -41,6 +43,9 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getWeatherAndForecast(this.city).subscribe((data) => {
       this.weatherData = data.weather;
       this.forecastData = data.forecast;
+      if (!this.searchHistory.includes(this.city)) {
+        this.searchHistory.push(this.city);
+      }
     });
 
   }
@@ -63,6 +68,10 @@ export class WeatherComponent implements OnInit {
   }
 
 
-
+  loadCityWeather(city: string) {
+    this.city = city;
+    this.getWeatherAndForecast();
+  }
+  
 
 }
