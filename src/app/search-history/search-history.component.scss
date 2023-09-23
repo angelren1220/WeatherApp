@@ -1,18 +1,26 @@
-.history-table {
+// Variables
+$background-color: #451952;
+$font-color: white;
+$head-color: #F39F5A;;
+
+.weather-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 20px; // Space between input search and table
 
-  th, td {
-    border: 1px solid #e0e0e0;
+  th {
+    background-color: $head-color;
+  }
+
+
+  td {
     padding: 8px 12px;
     text-align: center;
+
+    i {
+      margin-right: 5px; // space between icon and the text
+    }
   }
 
-  button {
-    background: none;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer;
-  }
+
 }
