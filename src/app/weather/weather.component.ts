@@ -19,6 +19,10 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentCity();
+    const savedHistory = localStorage.getItem('searchHistory');
+    if (savedHistory) {
+      this.searchHistory = JSON.parse(savedHistory);
+    }
   }
 
   getCurrentCity() {
@@ -43,9 +47,13 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getWeatherAndForecast(this.city).subscribe((data) => {
       this.weatherData = data.weather;
       this.forecastData = data.forecast;
+
+      // search history
       if (!this.searchHistory.includes(this.city)) {
         this.searchHistory.push(this.city);
+        localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
       }
+      
     });
 
   }
@@ -61,6 +69,8 @@ export class WeatherComponent implements OnInit {
       return 'fas fa-cloud';
     } else if (condition.toLocaleLowerCase().includes('clear')){
       return 'fas fa-moon';
+    } else if (condition.toLocaleLowerCase().includes('mist' || 'fog')){
+      return 'fas fa-smog';
     }
 
     // Default icon
