@@ -1,2 +1,7 @@
 <app-top-bar></app-top-bar>
 <app-weather></app-weather>
+<app-pagination 
+  [currentPage]="currentPage" 
+  [totalPages]="totalPages" 
+  (pageChanged)="goToPage($event)">
+</app-pagination>
