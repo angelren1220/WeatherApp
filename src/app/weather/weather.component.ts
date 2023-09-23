@@ -13,18 +13,6 @@ export class WeatherComponent implements OnInit {
   forecastData: any;
   city: string = '';
 
-  private readonly iconsMap: Record<string, string> = {
-    'Sunny': 'fas fa-sun',
-    'Clear': 'fas fa-sun',
-    'Rain': 'fas fa-cloud-rain',
-    'Snow': 'fas fa-snowflake',
-    'Sleet': 'fas fa-could-sleet',
-    'Wind': 'fas fa-wind',
-    'Fog': 'fas fa-smog',
-    'Cloudy': 'fas fa-cloud',
-
-  };
-
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
@@ -58,10 +46,23 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeatherIcon(condition: string): string {
+    if (condition.toLowerCase().includes('sunny')) {
+      return 'fas fa-sun';
+    } else if (condition.toLowerCase().includes('rain')) {
+      return 'fas fa-cloud-rain';
+    } else if (condition.toLowerCase().includes('snow')) {
+      return 'fas fa-snowflake';
+    } else if (condition.toLowerCase().includes('cloud' || 'overcast')) {
+      return 'fas fa-cloud';
+    } else if (condition.toLocaleLowerCase().includes('clear')){
+      return 'fas fa-moon';
+    }
 
-    return this.iconsMap[condition] || 'fas fa-question';  // wi-na is for "not available"
+    // Default icon
+    return 'fas fa-question';
   }
-  
+
+
 
 
 }
