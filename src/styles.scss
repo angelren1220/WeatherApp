@@ -3,6 +3,9 @@
 
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
+html, body {
+  min-height: 100vh;
+}
 
 body {
   font-family: 'Roboto', sans-serif;

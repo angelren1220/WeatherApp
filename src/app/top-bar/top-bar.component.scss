@@ -1,5 +1,6 @@
-$primary-color: #333; 
+$primary-color: #662549; 
 $font-stack: 'Arial', sans-serif;
+$font-color: #F39F5A;
 
 .top-bar {
   display: flex;
@@ -11,7 +12,7 @@ $font-stack: 'Arial', sans-serif;
   .title {
     font-family: $font-stack;
     margin: 0;
-    color: white; 
+    color: $font-color; 
   }
 
   .logo {
