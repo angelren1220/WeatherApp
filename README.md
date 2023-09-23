@@ -8,6 +8,9 @@ This is a weather application built with Angular that allows users to view the c
 - View a 3-day forecast for any city
 - Automatically detect and display weather for the user's current location
 
+### Current Weather Display
+![Current Weather Display]()
+
 ## Technologies Used
 
 - Angular
