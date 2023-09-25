@@ -2,7 +2,6 @@
 $background-color: #451952;
 $font-color: white;
 $button-bg-color: #AE445A;
-$button-font-color: white;
 $yellow-color: #F39F5A;
 
 // Base styles for the component
@@ -25,7 +24,7 @@ input {
 button {
   padding: 0.5rem 1rem;
   background-color: $button-bg-color;
-  color: $button-font-color;
+  color: $font-color;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
