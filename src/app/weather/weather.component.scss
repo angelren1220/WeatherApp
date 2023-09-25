@@ -3,6 +3,7 @@ $background-color: #451952;
 $font-color: white;
 $button-bg-color: #AE445A;
 $button-font-color: white;
+$yellow-color: #F39F5A;
 
 // Base styles for the component
 :host {
@@ -49,7 +50,7 @@ button {
   }
 
   tr:first-child {
-    background-color: $button-bg-color; // slightly different color for the current weather
+    background-color: $yellow-color; // slightly different color for the current weather
   }
 
 }

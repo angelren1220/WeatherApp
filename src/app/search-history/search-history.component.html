@@ -1,26 +1,24 @@
-<!-- Search History List -->
-<h3>{{ city }}</h3>
-<table class="weather-table">
-  <tbody>
-    <!-- Current Weather Data -->
-    <ng-container *ngIf="weatherData">
+<!-- Loop through all the search history -->
+<ng-container *ngFor="let historyItem of searchHistory; let i = index">
+  <h3>{{ historyItem.city }}</h3>
+  <table class="weather-table">
+    <tbody>
+      <!-- Current Weather Data -->
       <tr>
         <td>
-          {{ weatherData.location.localtime | date:'MM-dd' }} {{ weatherData.location.localtime | date:'EEE' }}
+          {{ historyItem.weatherData.location.localtime | date:'MM-dd' }} {{ historyItem.weatherData.location.localtime | date:'EEE' }}
         </td>
         <td>
-          {{ weatherData.current.temp_c }} °C
+          {{ historyItem.weatherData.current.temp_c }} °C
         </td>
         <td>
-          <i [ngClass]="weatherService.getWeatherIcon(weatherData.current.condition.text)"></i>
+          <i [ngClass]="weatherService.getWeatherIcon(historyItem.weatherData.current.condition.text)"></i>
         </td>
-        <td>{{ weatherData.current.condition.text }}</td>
+        <td>{{ historyItem.weatherData.current.condition.text }}</td>
       </tr>
-    </ng-container>
 
-    <!-- Forecast Data -->
-    <ng-container *ngIf="forecastData">
-      <tr *ngFor="let day of forecastData.forecast.forecastday">
+      <!-- Forecast Data -->
+      <tr *ngFor="let day of historyItem.forecastData.forecast.forecastday">
         <td>{{ day.date | date:'MM-dd' }} {{ day.date | date:'EEE' }}</td>
         <td>
           {{ day.day.avgtemp_c }} °C
@@ -30,23 +28,6 @@
         </td>
         <td>{{ day.day.condition.text }}</td>
       </tr>
-    </ng-container>
-  </tbody>
-</table>
-
-<!-- Pagination Controls -->
-<button (click)="goToPreviousPage()">Previous</button>
-<button (click)="goToNextPage()">Next</button>
-
-
-
-<!-- Pagination Controls -->
-<!-- Pagination Controls -->
-<div class="pagination-controls">
-  <button (click)="currentPage = 1; loadDataFromPage(0)" [disabled]="currentPage === 1">First</button>
-  <button (click)="currentPage = currentPage - 1; loadDataFromPage(currentPage - 2)" [disabled]="currentPage === 1">Prev</button>
-  <span>{{ currentPage }}</span>
-  <button (click)="currentPage = currentPage + 1; loadDataFromPage(currentPage)" [disabled]="currentPage === totalPages">Next</button>
-  <button (click)="currentPage = totalPages; loadDataFromPage(totalPages - 1)" [disabled]="currentPage === totalPages">Last</button>
-</div>
-
+    </tbody>
+  </table>
+</ng-container>
