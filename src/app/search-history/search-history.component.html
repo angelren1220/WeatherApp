@@ -1,11 +1,13 @@
 <!-- Search History List -->
-<!-- Current Weather Data -->
-<div *ngIf="weatherData">
-  <h3>{{city}}</h3>
-  <table class="weather-table">
-    <tbody>
+<h3>{{ city }}</h3>
+<table class="weather-table">
+  <tbody>
+    <!-- Current Weather Data -->
+    <ng-container *ngIf="weatherData">
       <tr>
-        <td>Now</td>
+        <td>
+          {{ weatherData.location.localtime | date:'MM-dd' }} {{ weatherData.location.localtime | date:'EEE' }}
+        </td>
         <td>
           {{ weatherData.current.temp_c }} °C
         </td>
@@ -14,14 +16,10 @@
         </td>
         <td>{{ weatherData.current.condition.text }}</td>
       </tr>
-    </tbody>
-  </table>
-</div>
+    </ng-container>
 
-<!-- Forecast Data -->
-<div *ngIf="forecastData">
-  <table class="weather-table">
-    <tbody>
+    <!-- Forecast Data -->
+    <ng-container *ngIf="forecastData">
       <tr *ngFor="let day of forecastData.forecast.forecastday">
         <td>{{ day.date | date:'MM-dd' }} {{ day.date | date:'EEE' }}</td>
         <td>
@@ -32,9 +30,9 @@
         </td>
         <td>{{ day.day.condition.text }}</td>
       </tr>
-    </tbody>
-  </table>
-</div>
+    </ng-container>
+  </tbody>
+</table>
 
 <!-- Pagination Controls -->
 <button (click)="goToPreviousPage()">Previous</button>
