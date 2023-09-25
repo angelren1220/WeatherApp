@@ -9,7 +9,7 @@ This Angular-powered weather application provides users with an intuitive interf
 - 3-Day Forecast: Alongside current conditions, view a concise 3-day forecast for any city.
 
 ### App View
-![App View](https://github.com/angelren1220/WeatherApp/blob/1037bf1f57d91abbf8a92e85836e64755dc70381/screenshots/Screenshot1.png?raw=true)
+![App View](https://github.com/angelren1220/WeatherApp/blob/main/screenshots/Screenshot1.png?raw=true)
 
 ## Technologies Used
 
