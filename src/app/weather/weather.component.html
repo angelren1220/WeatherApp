@@ -15,7 +15,7 @@
           {{ weatherData.current.temp_c }} °C
         </td>
         <td>
-          <i [ngClass]="getWeatherIcon(weatherData.current.condition.text)"></i>
+          <i [ngClass]="weatherService.getWeatherIcon(weatherData.current.condition.text)"></i>
         </td>
         <td>{{ weatherData.current.condition.text }}</td>
       </tr>
@@ -29,7 +29,7 @@
           {{ day.day.avgtemp_c }} °C
         </td>
         <td>
-          <i [ngClass]="getWeatherIcon(day.day.condition.text)"></i>
+          <i [ngClass]="weatherService.getWeatherIcon(day.day.condition.text)"></i>
         </td>
         <td>{{ day.day.condition.text }}</td>
       </tr>

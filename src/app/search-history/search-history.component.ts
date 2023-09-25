@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { WeatherService } from '../weather.service';
 
 @Component({
   selector: 'app-search-history',
@@ -12,13 +13,13 @@ export class SearchHistoryComponent {
 
   // Pagination properties
   currentPage: number = 1;
-  itemsPerPage: number = 5;  // or whatever makes sense for your UI
+  itemsPerPage: number = 5;  
   totalPages: number;
   city: string = '';
   weatherData: any;
   forecastData: any;
 
-  constructor() {
+  constructor(public weatherService: WeatherService) {
     // Calculate total pages based on itemsPerPage
     this.totalPages = Math.ceil(this.searchHistory.length / this.itemsPerPage);
   }

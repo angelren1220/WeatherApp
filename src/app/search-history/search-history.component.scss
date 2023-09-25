@@ -1,17 +1,14 @@
 // Variables
 $background-color: #451952;
 $font-color: white;
-$head-color: #F39F5A;;
+$head-color: #F39F5A;
+$button-bg-color: #AE445A;
+
 
 .weather-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px; // Space between input search and table
-
-  th {
-    background-color: $head-color;
-  }
-
 
   td {
     padding: 8px 12px;
@@ -22,5 +19,8 @@ $head-color: #F39F5A;;
     }
   }
 
+  tr:first-child {
+    background-color: $button-bg-color; // slightly different color for the current weather
+  }
 
 }

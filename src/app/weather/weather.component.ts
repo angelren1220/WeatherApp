@@ -13,7 +13,7 @@ export class WeatherComponent implements OnInit {
   city: string = '';
   searchHistory: { city: string, weatherData: any, forecastData: any }[] = [];
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(public weatherService: WeatherService) { }
 
   ngOnInit(): void {
 
@@ -57,27 +57,6 @@ export class WeatherComponent implements OnInit {
       localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
     });
   }
-  
-
-  getWeatherIcon(condition: string): string {
-    if (condition.toLowerCase().includes('sunny')) {
-      return 'fas fa-sun';
-    } else if (condition.toLowerCase().includes('rain')) {
-      return 'fas fa-cloud-rain';
-    } else if (condition.toLowerCase().includes('snow')) {
-      return 'fas fa-snowflake';
-    } else if (condition.toLowerCase().includes('cloud' || 'overcast')) {
-      return 'fas fa-cloud';
-    } else if (condition.toLocaleLowerCase().includes('clear')){
-      return 'fas fa-moon';
-    } else if (condition.toLocaleLowerCase().includes('mist' || 'fog')){
-      return 'fas fa-smog';
-    }
-
-    // Default icon
-    return 'fas fa-question';
-  }
-
 
   loadCityWeather(city: string) {
     this.city = city;

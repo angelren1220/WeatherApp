@@ -29,4 +29,24 @@ export class WeatherService {
       forecast: forecastObservable
     });
   }
+
+  getWeatherIcon(condition: string): string {
+    const str = condition.toLocaleLowerCase();
+    if (str.includes('sunny')) {
+      return 'fas fa-sun';
+    } else if (str.includes('rain')) {
+      return 'fas fa-cloud-rain';
+    } else if (str.includes('snow')) {
+      return 'fas fa-snowflake';
+    } else if (str.includes('cloud') || str.includes('overcast')) {
+      return 'fas fa-cloud';
+    } else if (str.includes('clear')){
+      return 'fas fa-moon';
+    } else if (str.includes('mist') || str.includes('fog')){
+      return 'fas fa-smog';
+    }
+
+    // Default icon
+    return 'fas fa-question';
+  }
 }
