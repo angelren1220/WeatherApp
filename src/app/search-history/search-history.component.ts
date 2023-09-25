@@ -9,6 +9,7 @@ import { WeatherService } from '../weather.service';
 export class SearchHistoryComponent {
 
   @Input() searchHistory: { city: string, weatherData: any, forecastData: any }[] = [];
+  @Output() historyDeleted = new EventEmitter<number>();
   @Output() citySelected = new EventEmitter<string>();
 
   city: string = '';
@@ -31,5 +32,14 @@ export class SearchHistoryComponent {
       this.forecastData = recentData.forecastData;
     }
   }
+
+  deleteHistory(index: number) {
+    if (index > -1 && index < this.searchHistory.length) {
+      this.searchHistory.splice(index, 1);
+      this.historyDeleted.emit(index);
+    }
+  }
+  
+  
 }
 

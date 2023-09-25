@@ -1,6 +1,6 @@
 <!-- Loop through all the search history -->
 <ng-container *ngFor="let historyItem of searchHistory; let i = index">
-  <h3>{{ historyItem.city }}</h3>
+  <h3>{{ historyItem.city }} <button (click)="deleteHistory(i)"><i class='fas fa-trash'></i></button></h3> 
   <table class="weather-table">
     <tbody>
       <!-- Current Weather Data -->
